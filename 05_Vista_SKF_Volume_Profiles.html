@@ -592,45 +592,6 @@
                             </tr>
                         </thead>
                         <tbody id="profilesTable">
-                            <tr>
-                                <td>Industrial</td>
-                                <td>200</td>
-                                <td>5.0%</td>
-                                <td><span class="badge badge-active">Activo</span></td>
-                                <td>2025-01-10</td>
-                                <td>
-                                    <div class="actions">
-                                        <button class="btn btn-primary btn-sm" onclick="editProfile(0)">✏️ Editar</button>
-                                        <button class="btn btn-danger btn-sm" onclick="deleteProfile(0)">🗑️ Eliminar</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Automotriz</td>
-                                <td>150</td>
-                                <td>3.5%</td>
-                                <td><span class="badge badge-active">Activo</span></td>
-                                <td>2025-01-08</td>
-                                <td>
-                                    <div class="actions">
-                                        <button class="btn btn-primary btn-sm" onclick="editProfile(1)">✏️ Editar</button>
-                                        <button class="btn btn-danger btn-sm" onclick="deleteProfile(1)">🗑️ Eliminar</button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Mixto</td>
-                                <td>100</td>
-                                <td>7.0%</td>
-                                <td><span class="badge badge-inactive">Inactivo</span></td>
-                                <td>2025-01-05</td>
-                                <td>
-                                    <div class="actions">
-                                        <button class="btn btn-primary btn-sm" onclick="editProfile(2)">✏️ Editar</button>
-                                        <button class="btn btn-danger btn-sm" onclick="deleteProfile(2)">🗑️ Eliminar</button>
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -698,10 +659,31 @@
         let profiles = [
             {
                 segment: "Industrial",
+                minQuantity: 50,
+                discountPercent: 3.0,
+                status: "Activo",
+                dateCreated: "2025-01-12"
+            },
+            {
+                segment: "Industrial",
                 minQuantity: 200,
                 discountPercent: 5.0,
                 status: "Activo",
                 dateCreated: "2025-01-10"
+            },
+            {
+                segment: "Industrial",
+                minQuantity: 500,
+                discountPercent: 8.0,
+                status: "Activo",
+                dateCreated: "2025-01-09"
+            },
+            {
+                segment: "Automotriz",
+                minQuantity: 100,
+                discountPercent: 2.5,
+                status: "Activo",
+                dateCreated: "2025-01-11"
             },
             {
                 segment: "Automotriz",
@@ -711,11 +693,32 @@
                 dateCreated: "2025-01-08"
             },
             {
+                segment: "Automotriz",
+                minQuantity: 300,
+                discountPercent: 6.0,
+                status: "Inactivo",
+                dateCreated: "2025-01-06"
+            },
+            {
+                segment: "Mixto",
+                minQuantity: 75,
+                discountPercent: 4.0,
+                status: "Activo",
+                dateCreated: "2025-01-07"
+            },
+            {
                 segment: "Mixto",
                 minQuantity: 100, 
                 discountPercent: 7.0,
                 status: "Inactivo",
                 dateCreated: "2025-01-05"
+            },
+            {
+                segment: "Mixto",
+                minQuantity: 250,
+                discountPercent: 9.5,
+                status: "Activo",
+                dateCreated: "2025-01-04"
             }
         ];
 
