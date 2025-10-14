@@ -105,6 +105,32 @@
             margin-left: auto;
         }
         
+        .submenu {
+            padding-left: 40px;
+        }
+        
+        .submenu-item {
+            padding: 8px 20px;
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .submenu-item:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .submenu-item.active {
+            background-color: #e3f2fd;
+            color: #0066b3;
+            border-left: 2px solid #0066b3;
+        }
+        
         .main-content {
             flex: 1;
             padding: 30px;
@@ -449,6 +475,20 @@
                 </div>
                 <div class="menu-item active new">
                     <span>💲</span> Precios
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item" onclick="window.location.href='01_Vista_SKF_Dashboard_Accesos.html'">
+                        <span>📊</span> Dashboard de Accesos
+                    </div>
+                    <div class="submenu-item" onclick="window.location.href='02_Vista_SKF_Cargar_Precios.html'">
+                        <span>📤</span> Cargar Precios
+                    </div>
+                    <div class="submenu-item" onclick="window.location.href='03_Vista_SKF_Consultar_Precios.html'">
+                        <span>🔍</span> Consultar Precios
+                    </div>
+                    <div class="submenu-item active" onclick="window.location.href='05_Vista_SKF_Volume_Profiles.html'">
+                        <span>📈</span> Volume Profiles
+                    </div>
                 </div>
                 <div class="menu-item">
                     <span>📊</span> Analíticas
