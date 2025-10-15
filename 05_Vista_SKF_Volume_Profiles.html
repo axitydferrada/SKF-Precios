@@ -420,6 +420,65 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-wrapper {
+                overflow-x: auto;
+            }
+            
+            .table-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+            
+            .actions {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .btn-sm {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+                gap: 10px !important;
+            }
+            
+            .tab {
+                padding: 8px 12px !important;
+                font-size: 12px !important;
+            }
+            
+            .modal-content {
+                width: 95% !important;
+                margin: 10% auto !important;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .modal-footer .btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -532,18 +591,23 @@
                 <form id="volumeProfileForm">
                     <div class="form-grid">
                         <div class="form-group">
-                            <label class="form-label">Segmento *</label>
+                            <label class="form-label">Familia *</label>
                             <select class="form-select" id="segment" required>
-                                <option value="">Seleccionar segmento</option>
+                                <option value="">Seleccionar familia</option>
                                 <option value="Industrial">Industrial</option>
-                                <option value="Automotriz">Automotriz</option>
+                                <option value="Automotriz">Sellos</option>
                                 <option value="Mixto">Mixto</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
                             <label class="form-label">Cantidad Mínima *</label>
-                            <input type="number" class="form-input" id="minQuantity" placeholder="Ej: 200" min="1" required>
+                            <input type="number" class="form-input" id="minQuantity" placeholder="Ej: 100" min="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Cantidad Máxima *</label>
+                            <input type="number" class="form-input" id="maxQuantity" placeholder="Ej: 200" min="1" required>
                         </div>
                         
                         <div class="form-group">
@@ -585,6 +649,7 @@
                             <tr>
                                 <th>Segmento</th>
                                 <th>Cantidad Mínima</th>
+                                <th>Cantidad Máxima</th>
                                 <th>% Descuento</th>
                                 <th>Estado</th>
                                 <th>Fecha Creación</th>
@@ -635,6 +700,11 @@
                     </div>
                     
                     <div class="form-group" style="margin-bottom: 15px;">
+                        <label class="form-label">Cantidad Máxima *</label>
+                        <input type="number" class="form-input" id="editMaxQuantity" min="1" required>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 15px;">
                         <label class="form-label">Porcentaje Descuento (%) *</label>
                         <input type="number" class="form-input" id="editDiscountPercent" min="0" max="100" step="0.1" required>
                     </div>
@@ -660,6 +730,7 @@
             {
                 segment: "Industrial",
                 minQuantity: 50,
+                maxQuantity: 199,
                 discountPercent: 3.0,
                 status: "Activo",
                 dateCreated: "2025-01-12"
@@ -667,6 +738,7 @@
             {
                 segment: "Industrial",
                 minQuantity: 200,
+                maxQuantity: 499,
                 discountPercent: 5.0,
                 status: "Activo",
                 dateCreated: "2025-01-10"
@@ -674,6 +746,7 @@
             {
                 segment: "Industrial",
                 minQuantity: 500,
+                maxQuantity: 999,
                 discountPercent: 8.0,
                 status: "Activo",
                 dateCreated: "2025-01-09"
@@ -681,6 +754,7 @@
             {
                 segment: "Automotriz",
                 minQuantity: 100,
+                maxQuantity: 149,
                 discountPercent: 2.5,
                 status: "Activo",
                 dateCreated: "2025-01-11"
@@ -688,6 +762,7 @@
             {
                 segment: "Automotriz",
                 minQuantity: 150,
+                maxQuantity: 299,
                 discountPercent: 3.5,
                 status: "Activo",
                 dateCreated: "2025-01-08"
@@ -695,6 +770,7 @@
             {
                 segment: "Automotriz",
                 minQuantity: 300,
+                maxQuantity: 599,
                 discountPercent: 6.0,
                 status: "Inactivo",
                 dateCreated: "2025-01-06"
@@ -702,13 +778,15 @@
             {
                 segment: "Mixto",
                 minQuantity: 75,
+                maxQuantity: 99,
                 discountPercent: 4.0,
                 status: "Activo",
                 dateCreated: "2025-01-07"
             },
             {
                 segment: "Mixto",
-                minQuantity: 100, 
+                minQuantity: 100,
+                maxQuantity: 249,
                 discountPercent: 7.0,
                 status: "Inactivo",
                 dateCreated: "2025-01-05"
@@ -716,6 +794,7 @@
             {
                 segment: "Mixto",
                 minQuantity: 250,
+                maxQuantity: 499,
                 discountPercent: 9.5,
                 status: "Activo",
                 dateCreated: "2025-01-04"
@@ -748,6 +827,7 @@
                     <tr>
                         <td>${profile.segment}</td>
                         <td>${profile.minQuantity}</td>
+                        <td>${profile.maxQuantity}</td>
                         <td>${profile.discountPercent}%</td>
                         <td>${statusBadge}</td>
                         <td>${profile.dateCreated}</td>
@@ -768,6 +848,7 @@
             const newProfile = {
                 segment: document.getElementById('segment').value,
                 minQuantity: parseInt(document.getElementById('minQuantity').value),
+                maxQuantity: parseInt(document.getElementById('maxQuantity').value),
                 discountPercent: parseFloat(document.getElementById('discountPercent').value),
                 status: document.getElementById('status').value,
                 dateCreated: new Date().toISOString().split('T')[0]
@@ -784,6 +865,7 @@
             document.getElementById('editIndex').value = index;
             document.getElementById('editSegment').value = profile.segment;
             document.getElementById('editMinQuantity').value = profile.minQuantity;
+            document.getElementById('editMaxQuantity').value = profile.maxQuantity;
             document.getElementById('editDiscountPercent').value = profile.discountPercent;
             document.getElementById('editStatus').value = profile.status;
             
@@ -797,6 +879,7 @@
                 ...profiles[index],
                 segment: document.getElementById('editSegment').value,
                 minQuantity: parseInt(document.getElementById('editMinQuantity').value),
+                maxQuantity: parseInt(document.getElementById('editMaxQuantity').value),
                 discountPercent: parseFloat(document.getElementById('editDiscountPercent').value),
                 status: document.getElementById('editStatus').value
             };
