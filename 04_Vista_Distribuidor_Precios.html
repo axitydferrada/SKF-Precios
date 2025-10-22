@@ -389,6 +389,10 @@
             font-size: 16px;
             margin-left: 5px;
         }
+        
+        .numeric-cell {
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -495,20 +499,20 @@
                                 <th>Familia</th>
                                 <th>(New) Product Line</th>
                                 <th>Sub Product Line</th>
-                                <th>Precio Bruto</th>
-                                <th>
+                                <th class="numeric-cell">Precio Bruto</th>
+                                <th class="numeric-cell">
                                     Descuento
                                     <span class="tooltip info-icon" data-tooltip="Descuento basado en tu evaluación">ℹ️</span>
                                 </th>
-                                <th>
+                                <th class="numeric-cell">
                                     Precio Final
                                     <span class="tooltip info-icon" data-tooltip="Precio con descuento aplicado">ℹ️</span>
                                 </th>
-                                <th>
+                                <th class="numeric-cell">
                                     Cantidad
                                     <span class="tooltip info-icon" data-tooltip="Ingresa la cantidad que deseas">ℹ️</span>
                                 </th>
-                                <th>
+                                <th class="numeric-cell">
                                     Precio Final Volumen
                                     <span class="tooltip info-icon" data-tooltip="Precio con descuento por volumen si aplica">ℹ️</span>
                                 </th>
@@ -521,13 +525,13 @@
                                 <td>Sellos</td>
                                 <td>Sealing Solutions</td>
                                 <td>Oil Seals</td>
-                                <td class="price-cell">$12.30</td>
-                                <td class="discount-cell">8%</td>
-                                <td class="final-price-cell">$11.32</td>
-                                <td>
+                                <td class="price-cell numeric-cell">$12.30</td>
+                                <td class="discount-cell numeric-cell">8%</td>
+                                <td class="final-price-cell numeric-cell">$11.32</td>
+                                <td class="numeric-cell">
                                     <input type="number" class="quantity-input" value="50" min="1" data-row="0">
                                 </td>
-                                <td class="volume-price-cell" id="volume-0">$11.32</td>
+                                <td class="volume-price-cell numeric-cell" id="volume-0">$11.32</td>
                             </tr>
                             <tr>
                                 <td>Automotriz</td>
@@ -535,13 +539,13 @@
                                 <td>Sellos</td>
                                 <td>Sealing Solutions</td>
                                 <td>Oil Seals</td>
-                                <td class="price-cell">$14.80</td>
-                                <td class="discount-cell">8%</td>
-                                <td class="final-price-cell">$13.62</td>
-                                <td>
+                                <td class="price-cell numeric-cell">$14.80</td>
+                                <td class="discount-cell numeric-cell">8%</td>
+                                <td class="final-price-cell numeric-cell">$13.62</td>
+                                <td class="numeric-cell">
                                     <input type="number" class="quantity-input" value="250" min="1" data-row="1">
                                 </td>
-                                <td class="volume-price-cell" id="volume-1">$12.95 ✓</td>
+                                <td class="volume-price-cell numeric-cell" id="volume-1">$12.95 ✓</td>
                             </tr>
                             <tr>
                                 <td>Industrial</td>
@@ -549,13 +553,13 @@
                                 <td>Sellos</td>
                                 <td>Sealing Solutions</td>
                                 <td>Oil Seals</td>
-                                <td class="price-cell">$18.90</td>
-                                <td class="discount-cell">12%</td>
-                                <td class="final-price-cell">$16.63</td>
-                                <td>
+                                <td class="price-cell numeric-cell">$18.90</td>
+                                <td class="discount-cell numeric-cell">12%</td>
+                                <td class="final-price-cell numeric-cell">$16.63</td>
+                                <td class="numeric-cell">
                                     <input type="number" class="quantity-input" value="100" min="1" data-row="2">
                                 </td>
-                                <td class="volume-price-cell" id="volume-2">$15.80 ✓</td>
+                                <td class="volume-price-cell numeric-cell" id="volume-2">$15.80 ✓</td>
                             </tr>
                         </tbody>
                     </table>

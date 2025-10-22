@@ -479,6 +479,18 @@
                 width: 100%;
             }
         }
+        
+        .numeric-cell {
+            text-align: right !important;
+        }
+        
+        th.numeric-cell {
+            text-align: right !important;
+        }
+        
+        td.numeric-cell {
+            text-align: right !important;
+        }
     </style>
 </head>
 <body>
@@ -648,9 +660,9 @@
                         <thead>
                             <tr>
                                 <th>Familia</th>
-                                <th>Cantidad Mínima</th>
-                                <th>Cantidad Máxima</th>
-                                <th>% Descuento</th>
+                                <th style="text-align: right;">Cantidad Mínima</th>
+                                <th style="text-align: right;">Cantidad Máxima</th>
+                                <th style="text-align: right;">% Descuento</th>
                                 <th>Estado</th>
                                 <th>Fecha Creación</th>
                                 <th>Acciones</th>
@@ -826,9 +838,9 @@
                 tbody.innerHTML += `
                     <tr>
                         <td>${profile.segment}</td>
-                        <td>${profile.minQuantity}</td>
-                        <td>${profile.maxQuantity}</td>
-                        <td>${profile.discountPercent}%</td>
+                        <td style="text-align: right;">${profile.minQuantity}</td>
+                        <td style="text-align: right;">${profile.maxQuantity}</td>
+                        <td style="text-align: right;">${profile.discountPercent}%</td>
                         <td>${statusBadge}</td>
                         <td>${profile.dateCreated}</td>
                         <td>

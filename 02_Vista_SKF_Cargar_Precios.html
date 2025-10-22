@@ -424,6 +424,60 @@
             background-color: #f0f0f0;
         }
         
+        .badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .badge-high {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .badge-low {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .upload-area.dragover {
+            background-color: #e3f2fd;
+            border-color: #004080;
+            transform: scale(1.02);
+        }
+        
+        .file-selected {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #0066b3;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .numeric-cell {
+            text-align: right;
+        }
+        
         @media (max-width: 768px) {
             .sidebar {
                 display: none;
@@ -618,10 +672,10 @@
                             <th>Usuario</th>
                             <th>Nombre de Archivo</th>
                             <th>Estado</th>
-                            <th>Registros Procesados</th>
-                            <th>Registros con Error</th>
+                            <th class="numeric-cell">Registros Procesados</th>
+                            <th class="numeric-cell">Registros con Error</th>
                             <th>Tiempo de Procesamiento</th>
-                            <th>Acciones</th>
+                            <th>Resporte</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -630,50 +684,50 @@
                             <td>maria.catilino@skf.com</td>
                             <td>Precios_SKF_Oct2025.xlsx</td>
                             <td><span class="badge badge-high">Completado</span></td>
-                            <td>99,845</td>
-                            <td>155</td>
+                            <td class="numeric-cell">99,845</td>
+                            <td class="numeric-cell">155</td>
                             <td>8 min 32 seg</td>
-                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar Reporte</button></td>
+                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar</button></td>
                         </tr>
                         <tr>
                             <td>2025-10-08 14:15:42</td>
                             <td>admin@skf.com</td>
                             <td>Actualizacion_Precios_Set2025.xlsx</td>
                             <td><span class="badge badge-high">Completado</span></td>
-                            <td>100,000</td>
-                            <td>0</td>
+                            <td class="numeric-cell">100,000</td>
+                            <td class="numeric-cell">0</td>
                             <td>9 min 18 seg</td>
-                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar Reporte</button></td>
+                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar</button></td>
                         </tr>
                         <tr>
                             <td>2025-10-05 11:42:08</td>
                             <td>maria.catilino@skf.com</td>
                             <td>Precios_Nuevos_Productos.xlsx</td>
                             <td><span class="badge badge-medium">Completado con advertencias</span></td>
-                            <td>45,230</td>
-                            <td>1,205</td>
+                            <td class="numeric-cell">45,230</td>
+                            <td class="numeric-cell">1,205</td>
                             <td>6 min 45 seg</td>
-                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar Reporte</button></td>
+                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar</button></td>
                         </tr>
                         <tr>
                             <td>2025-10-02 16:58:33</td>
                             <td>admin@skf.com</td>
                             <td>Lista_Precios_Sep2025.xlsx</td>
                             <td><span class="badge badge-high">Completado</span></td>
-                            <td>98,756</td>
-                            <td>23</td>
+                            <td class="numeric-cell">98,756</td>
+                            <td class="numeric-cell">23</td>
                             <td>7 min 52 seg</td>
-                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar Reporte</button></td>
+                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar</button></td>
                         </tr>
                         <tr>
                             <td>2025-09-28 10:12:55</td>
                             <td>maria.catilino@skf.com</td>
                             <td>Precios_Correccion.xlsx</td>
                             <td><span class="badge badge-low">Error</span></td>
-                            <td>0</td>
-                            <td>15,000</td>
+                            <td class="numeric-cell">0</td>
+                            <td class="numeric-cell">15,000</td>
                             <td>2 min 10 seg</td>
-                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar Reporte</button></td>
+                            <td><button class="btn-icon" style="padding: 4px 8px; font-size: 11px;">📥 Descargar</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -705,5 +759,99 @@
         </div>
     </div>
 
+    <script>
+        // Funcionalidad de drag & drop
+        const uploadArea = document.querySelector('.upload-area');
+        const fileInput = document.getElementById('fileInput');
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelection(files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFileSelection(e.target.files[0]);
+            }
+        });
+        
+        function handleFileSelection(file) {
+            const allowedTypes = ['.xlsx', '.xls'];
+            const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+            
+            if (!allowedTypes.includes(fileExtension)) {
+                alert('Por favor selecciona un archivo Excel (.xlsx o .xls)');
+                return;
+            }
+            
+            // Actualizar UI
+            uploadArea.classList.add('file-selected');
+            document.querySelector('.upload-text').textContent = `Archivo seleccionado: ${file.name}`;
+            document.querySelector('.upload-subtext').textContent = `Tamaño: ${(file.size / 1024 / 1024).toFixed(2)} MB`;
+            document.querySelector('.upload-btn').textContent = 'Procesar Archivo';
+            
+            // Simular procesamiento
+            document.querySelector('.upload-btn').onclick = () => processFile(file);
+        }
+        
+        function processFile(file) {
+            const uploadBtn = document.querySelector('.upload-btn');
+            uploadBtn.disabled = true;
+            uploadBtn.textContent = 'Procesando...';
+            
+            // Crear barra de progreso
+            const progressBar = document.createElement('div');
+            progressBar.className = 'progress-bar';
+            progressBar.innerHTML = '<div class="progress-fill"></div>';
+            uploadArea.appendChild(progressBar);
+            
+            // Simular progreso
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        alert('¡Archivo procesado exitosamente! Recibirás un correo con los resultados.');
+                        resetUploadArea();
+                    }, 500);
+                }
+                
+                document.querySelector('.progress-fill').style.width = progress + '%';
+            }, 200);
+        }
+        
+        function resetUploadArea() {
+            uploadArea.classList.remove('file-selected');
+            document.querySelector('.upload-text').textContent = 'Haz clic o arrastra el archivo Excel aquí';
+            document.querySelector('.upload-subtext').textContent = 'Formato aceptado: .xlsx, .xls';
+            document.querySelector('.upload-btn').textContent = 'Seleccionar Archivo';
+            document.querySelector('.upload-btn').disabled = false;
+            document.querySelector('.upload-btn').onclick = () => fileInput.click();
+            
+            const progressBar = document.querySelector('.progress-bar');
+            if (progressBar) {
+                progressBar.remove();
+            }
+            
+            fileInput.value = '';
+        }
+    </script>
 </body>
 </html>
