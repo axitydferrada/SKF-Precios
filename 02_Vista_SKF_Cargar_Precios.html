@@ -605,6 +605,9 @@
                     <div class="submenu-item" onclick="window.location.href='05_Vista_SKF_Volume_Profiles.html'">
                         <span>📈</span> Volume Profiles
                     </div>
+                    <div class="submenu-item" onclick="window.location.href='06_Vista_SKF_Chat_Precios.html'">
+                        <span>💬</span> Chat de Precios
+                    </div>
                 </div>
                 <div class="menu-item">
                     <span>📊</span> Analíticas
@@ -631,14 +634,50 @@
                 <div class="tab active">Cargar Precios</div>
                 <div class="tab" onclick="window.location.href='03_Vista_SKF_Consultar_Precios.html'">Consultar Precios</div>
                 <div class="tab" onclick="window.location.href='05_Vista_SKF_Volume_Profiles.html'">Volume Profiles</div>
+                <div class="tab" onclick="window.location.href='06_Vista_SKF_Chat_Precios.html'">Chat de Precios</div>
             </div>
             
             <div class="upload-section">
                 <h3 style="margin-bottom: 20px; color: #333;">Cargar Lista de Precios</h3>
                 
-                <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 4px;">
+                    <h4 style="color: #856404; font-size: 14px; margin-bottom: 8px;">📋 Estado de Listas de Precios</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px;">
+                        <div style="background: white; padding: 12px; border-radius: 4px; border: 1px solid #ddd;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Lista Vigente</div>
+                            <div style="font-weight: 600; color: #28a745; font-size: 14px;">✓ Activa</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 5px;">Vigencia: 01/07/2025 - 31/12/2025</div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 4px; border: 1px solid #ddd;">
+                            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Lista Borrador</div>
+                            <div style="font-weight: 600; color: #ffc107; font-size: 14px;">⏳ Programada</div>
+                            <div style="font-size: 11px; color: #666; margin-top: 5px;">Vigencia: 01/01/2026 - 30/06/2026</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                    <div>
+                        <label style="display: block; font-size: 12px; color: #666; margin-bottom: 5px;">Tipo de Lista *</label>
+                        <select id="listType" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                            <option value="">Seleccionar...</option>
+                            <option value="vigente">Actualizar Lista Vigente</option>
+                            <option value="borrador">Crear/Actualizar Borrador</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 12px; color: #666; margin-bottom: 5px;">Fecha Entrada en Vigencia *</label>
+                        <input type="date" id="startDate" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                    </div>
+                    <div>
+                        <label style="display: block; font-size: 12px; color: #666; margin-bottom: 5px;">Fecha de Vencimiento *</label>
+                        <input type="date" id="endDate" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+                    </div>
+                </div>
+                
+                <div class="upload-area" onclick="validateAndUpload()">
                     <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;">
-                    <div class="upload-icon">📁</div>
+                    <div class="upload-icon">☁️⬆️</div>
                     <div class="upload-text">Haz clic o arrastra el archivo Excel aquí</div>
                     <div class="upload-subtext">Formato aceptado: .xlsx, .xls</div>
                     <button class="upload-btn">Seleccionar Archivo</button>
@@ -648,9 +687,11 @@
                     <h4>⚠️ Información importante sobre el archivo:</h4>
                     <ul>
                         <li>El archivo debe contener las siguientes columnas: <strong>Segmento, Designación del producto, Familia de producto, (New) Product Line, Sub (New) Product Line, Precio Bruto, Volume Profile, Descuento Volume Profile</strong></li>
-                        <li>El archivo se procesará en <strong>segundo plano</strong></li>
-                        <li>Recibirás un <strong>correo electrónico</strong> al finalizar el proceso con los resultados</li>
-                        <li>Si un producto ya existe, se <strong>actualizarán los precios</strong>; de lo contrario, se creará como nuevo</li>
+                        <li><strong>Solo puede existir 1 lista vigente y 1 borrador</strong> simultáneamente</li>
+                        <li>Las <strong>fechas no pueden sobreponerse</strong> entre la lista vigente y el borrador</li>
+                        <li>Al cumplirse la fecha de vigencia, el borrador se activa automáticamente y la lista anterior se elimina</li>
+                        <li>Al cumplirse la fecha de vencimiento, la lista se elimina automáticamente</li>
+                        <li>El archivo se procesará en <strong>segundo plano</strong> y recibirás un correo con los resultados</li>
                         <li>Tiempo estimado de procesamiento: 5-15 minutos dependiendo del tamaño del archivo</li>
                     </ul>
                 </div>
@@ -670,18 +711,20 @@
                         <tr>
                             <th>Fecha y Hora</th>
                             <th>Usuario</th>
+                            <th>Tipo de Lista</th>
                             <th>Nombre de Archivo</th>
                             <th>Estado</th>
                             <th class="numeric-cell">Registros Procesados</th>
                             <th class="numeric-cell">Registros con Error</th>
                             <th>Tiempo de Procesamiento</th>
-                            <th>Resporte</th>
+                            <th>Reporte</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>2025-10-10 09:23:15</td>
                             <td>maria.catilino@skf.com</td>
+                            <td><strong style="color: #28a745;">✓ Vigente</strong></td>
                             <td>Precios_SKF_Oct2025.xlsx</td>
                             <td><span class="badge badge-high">Completado</span></td>
                             <td class="numeric-cell">99,845</td>
@@ -692,6 +735,7 @@
                         <tr>
                             <td>2025-10-08 14:15:42</td>
                             <td>admin@skf.com</td>
+                            <td><strong style="color: #ffc107;">⏳ Borrador</strong></td>
                             <td>Actualizacion_Precios_Set2025.xlsx</td>
                             <td><span class="badge badge-high">Completado</span></td>
                             <td class="numeric-cell">100,000</td>
@@ -702,6 +746,7 @@
                         <tr>
                             <td>2025-10-05 11:42:08</td>
                             <td>maria.catilino@skf.com</td>
+                            <td><strong style="color: #28a745;">✓ Vigente</strong></td>
                             <td>Precios_Nuevos_Productos.xlsx</td>
                             <td><span class="badge badge-medium">Completado con advertencias</span></td>
                             <td class="numeric-cell">45,230</td>
@@ -712,6 +757,7 @@
                         <tr>
                             <td>2025-10-02 16:58:33</td>
                             <td>admin@skf.com</td>
+                            <td><strong style="color: #28a745;">✓ Vigente</strong></td>
                             <td>Lista_Precios_Sep2025.xlsx</td>
                             <td><span class="badge badge-high">Completado</span></td>
                             <td class="numeric-cell">98,756</td>
@@ -722,6 +768,7 @@
                         <tr>
                             <td>2025-09-28 10:12:55</td>
                             <td>maria.catilino@skf.com</td>
+                            <td><strong style="color: #28a745;">✓ Vigente</strong></td>
                             <td>Precios_Correccion.xlsx</td>
                             <td><span class="badge badge-low">Error</span></td>
                             <td class="numeric-cell">0</td>
@@ -760,6 +807,43 @@
     </div>
 
     <script>
+        function validateAndUpload() {
+            const listType = document.getElementById('listType').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            if (!listType) {
+                alert('Por favor selecciona el tipo de lista');
+                return;
+            }
+            if (!startDate || !endDate) {
+                alert('Por favor completa las fechas de vigencia y vencimiento');
+                return;
+            }
+            if (new Date(startDate) >= new Date(endDate)) {
+                alert('La fecha de vencimiento debe ser posterior a la fecha de entrada en vigencia');
+                return;
+            }
+            
+            // Validar sobreposición de fechas (simulado)
+            if (listType === 'borrador') {
+                const currentEnd = new Date('2025-12-31');
+                if (new Date(startDate) <= currentEnd) {
+                    alert('Las fechas del borrador no pueden sobreponerse con la lista vigente. La fecha de entrada en vigencia debe ser posterior al 31/12/2025');
+                    return;
+                }
+            }
+            if (listType === 'vigente') {
+                const draftStart = new Date('2026-01-01');
+                if (new Date(endDate) >= draftStart) {
+                    alert('Las fechas de la lista vigente no pueden sobreponerse con el borrador existente. La fecha de vencimiento debe ser anterior al 01/01/2026');
+                    return;
+                }
+            }
+            
+            document.getElementById('fileInput').click();
+        }
+        
         // Funcionalidad de drag & drop
         const uploadArea = document.querySelector('.upload-area');
         const fileInput = document.getElementById('fileInput');
@@ -776,6 +860,15 @@
         uploadArea.addEventListener('drop', (e) => {
             e.preventDefault();
             uploadArea.classList.remove('dragover');
+            
+            const listType = document.getElementById('listType').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            if (!listType || !startDate || !endDate) {
+                alert('Por favor completa todos los campos antes de cargar el archivo');
+                return;
+            }
             
             const files = e.dataTransfer.files;
             if (files.length > 0) {
