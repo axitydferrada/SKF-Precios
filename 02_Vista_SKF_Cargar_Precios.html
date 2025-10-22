@@ -423,6 +423,65 @@
         .page-btn:hover:not(.active) {
             background-color: #f0f0f0;
         }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .table-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+            
+            .table-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn-icon {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .tab {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            .upload-area {
+                padding: 20px;
+            }
+            
+            .upload-text {
+                font-size: 14px;
+            }
+            
+            .pagination {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .pagination-controls {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            table {
+                min-width: 600px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -548,6 +607,7 @@
                     <div class="table-title">Historial de Cargas Recientes</div>
                     <div class="table-actions">
                         <button class="btn-icon">🔄 Actualizar</button>
+                        <button class="btn-icon">📥 Exportar</button>
                     </div>
                 </div>
                 
@@ -644,5 +704,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>

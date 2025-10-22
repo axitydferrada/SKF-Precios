@@ -339,6 +339,70 @@
         .page-btn:hover:not(.active) {
             background-color: #f0f0f0;
         }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                margin-bottom: 10px;
+            }
+            
+            .filters {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+            
+            .table-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn-icon {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .tab {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            .pagination {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .pagination-controls {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            table {
+                min-width: 700px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -487,8 +551,8 @@
                 <div class="table-header">
                     <div class="table-title">Lista de Productos (100,000 registros)</div>
                     <div class="table-actions">
-                        <button class="btn-icon">🔄 Actualizar</button>
-                        <button class="btn-icon btn-primary">📥 Descargar Lista Base</button>
+                        <button class="btn-icon">📥 Descargar Lista Base</button>
+                        <button class="btn-icon btn-primary">📥 Exportar Búsqueda</button>
                     </div>
                 </div>
                 
@@ -647,5 +711,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>

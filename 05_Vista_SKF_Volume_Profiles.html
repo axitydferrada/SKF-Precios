@@ -594,9 +594,9 @@
                             <label class="form-label">Familia *</label>
                             <select class="form-select" id="segment" required>
                                 <option value="">Seleccionar familia</option>
-                                <option value="Industrial">Industrial</option>
-                                <option value="Automotriz">Sellos</option>
-                                <option value="Mixto">Mixto</option>
+                                <option value="Rodamientos">Rodamientos</option>
+                                <option value="Sellos">Sellos</option>
+                                <option value="Lubricantes">Lubricantes</option>
                             </select>
                         </div>
                         
@@ -639,7 +639,7 @@
                 <div class="table-header">
                     <div class="table-title">Volume Profiles Configurados</div>
                     <button class="btn btn-primary" onclick="exportProfiles()">
-                        <span>📥</span> Exportar Lista
+                        <span>📥</span> Exportar
                     </button>
                 </div>
                 
@@ -647,7 +647,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Segmento</th>
+                                <th>Familia</th>
                                 <th>Cantidad Mínima</th>
                                 <th>Cantidad Máxima</th>
                                 <th>% Descuento</th>
@@ -686,11 +686,11 @@
                 <form id="editForm">
                     <input type="hidden" id="editIndex">
                     <div class="form-group" style="margin-bottom: 15px;">
-                        <label class="form-label">Segmento *</label>
+                        <label class="form-label">Familia *</label>
                         <select class="form-select" id="editSegment" required>
-                            <option value="Industrial">Industrial</option>
-                            <option value="Automotriz">Automotriz</option>
-                            <option value="Mixto">Mixto</option>
+                            <option value="Rodamientos">Rodamientos</option>
+                            <option value="Sellos">Sellos</option>
+                            <option value="Lubricantes">Lubricantes</option>
                         </select>
                     </div>
                     
@@ -728,7 +728,7 @@
     <script>
         let profiles = [
             {
-                segment: "Industrial",
+                segment: "Rodamientos",
                 minQuantity: 50,
                 maxQuantity: 199,
                 discountPercent: 3.0,
@@ -736,7 +736,7 @@
                 dateCreated: "2025-01-12"
             },
             {
-                segment: "Industrial",
+                segment: "Rodamientos",
                 minQuantity: 200,
                 maxQuantity: 499,
                 discountPercent: 5.0,
@@ -744,7 +744,7 @@
                 dateCreated: "2025-01-10"
             },
             {
-                segment: "Industrial",
+                segment: "Rodamientos",
                 minQuantity: 500,
                 maxQuantity: 999,
                 discountPercent: 8.0,
@@ -752,7 +752,7 @@
                 dateCreated: "2025-01-09"
             },
             {
-                segment: "Automotriz",
+                segment: "Sellos",
                 minQuantity: 100,
                 maxQuantity: 149,
                 discountPercent: 2.5,
@@ -760,7 +760,7 @@
                 dateCreated: "2025-01-11"
             },
             {
-                segment: "Automotriz",
+                segment: "Sellos",
                 minQuantity: 150,
                 maxQuantity: 299,
                 discountPercent: 3.5,
@@ -768,7 +768,7 @@
                 dateCreated: "2025-01-08"
             },
             {
-                segment: "Automotriz",
+                segment: "Sellos",
                 minQuantity: 300,
                 maxQuantity: 599,
                 discountPercent: 6.0,
@@ -776,7 +776,7 @@
                 dateCreated: "2025-01-06"
             },
             {
-                segment: "Mixto",
+                segment: "Lubricantes",
                 minQuantity: 75,
                 maxQuantity: 99,
                 discountPercent: 4.0,
@@ -784,7 +784,7 @@
                 dateCreated: "2025-01-07"
             },
             {
-                segment: "Mixto",
+                segment: "Lubricantes",
                 minQuantity: 100,
                 maxQuantity: 249,
                 discountPercent: 7.0,
@@ -792,7 +792,7 @@
                 dateCreated: "2025-01-05"
             },
             {
-                segment: "Mixto",
+                segment: "Lubricantes",
                 minQuantity: 250,
                 maxQuantity: 499,
                 discountPercent: 9.5,
